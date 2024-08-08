@@ -6,11 +6,13 @@ import (
 )
 
 func main() {
+	loadEnv()
+
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", home)
 	mux.HandleFunc("/snippet/view", snippetView)
 	mux.HandleFunc("/snippet/create", snippetCreate)
-	log.Print("Starting server on :4000")
-	err := http.ListenAndServe(":4000", mux)
+	log.Printf("Starting server on %s", PORT)
+	err := http.ListenAndServe(PORT, mux)
 	log.Fatal(err)
 }
